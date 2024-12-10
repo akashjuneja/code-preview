@@ -28,7 +28,7 @@ export const Navbar=({
 })=>{
   const {theme,setTheme}=useTheme()
     return (
-        <nav className="w-full flex bg-background py-4">
+        <nav className="w-full flex bg-background p-4">
       <div className="flex flex-1 items-center">
         <Link href={"/"} className="flex items-center gap-2">
           <RefreshCcw className="w-6 h-6 dark:text-white " />

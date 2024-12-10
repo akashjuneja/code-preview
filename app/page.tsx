@@ -8,6 +8,9 @@ import { supabase } from "@/lib/supabase";
 import { useState } from "react";
 import { useLocalStorage } from "usehooks-ts";
 import { ChatInputComponent } from "@/components/chat-input";
+import { ChatPicker } from "@/components/chat-picker";
+import modelsList from "@/lib/models.json";
+
 export default function Home() {
   const [open, setOpen] = useState<boolean>(false);
   const [authView, setAuthView] = useState<AuthViewType>("sign_in");
@@ -43,8 +46,8 @@ export default function Home() {
         signOut={logout}
         onClear={() => {}}
       />
-      <div className="grid w-full md:grid-cols-2">
-        <div>
+      <div className="grid w-full md:grid-cols-2 h-screen">
+        <div className="flex flex-col justify-between content-between	h-screen">
           <Chat />
           <ChatInputComponent
             isLoading={false}
@@ -58,7 +61,7 @@ export default function Home() {
             isMultiModel={false}
             stop={() => {}}
           >
-            <h1>Children Components</h1>
+            <ChatPicker models={modelsList.models}/>
           </ChatInputComponent>
         </div>
         <div>jk</div>

@@ -1,7 +1,10 @@
 "use client";
 
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@radix-ui/react-tooltip";
 import { useState } from "react";
 import TextAreaAutosize from "react-textarea-autosize"
+import { Button } from "./ui/button";
+import { ArrowUp, Paperclip, Square } from "lucide-react";
 export const ChatInputComponent=({
     error,
     retry,
@@ -30,7 +33,7 @@ export const ChatInputComponent=({
     const [value, setValue]=useState<string>(input);
    
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="mb-2 flex flex-col mt-auto ">
             {
                 error !==undefined && (
                     <div>
@@ -38,8 +41,8 @@ export const ChatInputComponent=({
                         </div>
                 )
             }
-            <div>
-              <div>  {children}</div>
+            <div className="shadow-md rounded-2xl border">
+              <div className="flex items-center">  {children}</div>
               <TextAreaAutosize 
               autoFocus={true} 
               minRows={1} 
@@ -49,6 +52,78 @@ export const ChatInputComponent=({
               placeholder="describe your app imagination"
               onChange={handleInputChange}
               ></TextAreaAutosize>
+                 <div className="flex p-3 gap-2 items-center">
+          <input
+            type="file"
+            id="multimodal"
+            accept="image/*"
+            multiple={true}
+            className="hidden"
+            onChange={()=>{}}
+          />
+          <div className="flex items-center flex-1 gap-2">
+            <TooltipProvider>
+              <Tooltip delayDuration={0}>
+                <TooltipTrigger asChild>
+                  <Button
+                    disabled={false}
+                    type="button"
+                    variant={"outline"}
+                    size={"icon"}
+                    className="rounded-xl h-10 w-10"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      document.getElementById("multimodal")?.click();
+                    }}
+                  >
+                    <Paperclip className="h-5 w-5" />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>Add attachments</TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+            
+          </div>
+          <div>
+            {!isLoading ? (
+              <TooltipProvider>
+                <Tooltip delayDuration={0}>
+                  <TooltipTrigger asChild>
+                    <Button
+                      type="submit"
+                      variant={"default"}
+                      size={"icon"}
+                      className="rounded-xl h-10 w-10"
+                    >
+                      <ArrowUp className="h-5 w-5" />
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>Send message</TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            ) : (
+              <TooltipProvider>
+                <Tooltip delayDuration={0}>
+                  <TooltipTrigger asChild>
+                    <Button
+                      variant={"secondary"}
+                      size={"icon"}
+                      className="rounded-xl h-10 w-10"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        stop();
+                      }}
+                    >
+                      <Square className="h-5 w-5" />
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>Stop generation</TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            )}
+          </div>
+          </div>
+         
                 </div>
         </form>
     )

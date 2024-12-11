@@ -77,10 +77,10 @@ export function ChatSettings({
                 type="text"
                 placeholder="Auto"
                 required={true}
-                defaultValue={languageModel.baseURL}
+                defaultValue={languageModel.baseUrl}
                 onChange={(e) =>
                   onLanguageModelChange({
-                    baseURL:
+                    baseUrl:
                       e.target.value.length > 0 ? e.target.value : undefined,
                   })
                 }
@@ -189,7 +189,7 @@ export function ChatSettings({
             </span>
             <Input
               type="number"
-              defaultValue={languageModel.presencePenalty}
+              defaultValue={languageModel.presensePenalty}
               min={0}
               max={2}
               step={0.01}
@@ -197,7 +197,7 @@ export function ChatSettings({
               className="h-6 rounded-sm w-[84px] text-xs text-center tabular-nums"
               onChange={(e) =>
                 onLanguageModelChange({
-                  presencePenalty: parseFloat(e.target.value) || undefined,
+                  presensePenalty: parseFloat(e.target.value) || undefined,
                 })
               }
             />

@@ -11,7 +11,8 @@ import { ChatInputComponent } from "@/components/chat-input";
 import { ChatPicker } from "@/components/chat-picker";
 import modelsList from "@/lib/models.json";
 import templates from "@/lib/templates";
- 
+import { ChatSettings } from "@/components/chat-settings";
+import { LLMModelConfig } from "@/lib/models";
 
 export default function Home() {
   const [open, setOpen] = useState<boolean>(false);
@@ -24,6 +25,7 @@ export default function Home() {
     model: "gpt-4o-mini",
   });
 
+  const [messages,setMessages]=useState<Mess>([])
   const handleOpen = () => {
     setOpen(true);
   };
@@ -31,6 +33,13 @@ export default function Home() {
   const logout = () => {
     supabase ? supabase.auth.signOut() : null;
   };
+
+  const handleLanguageModelChange=(e:LLMModelConfig)=>{
+    setLanguageModel({
+      ...languageModel,
+      ...e
+    })
+  }
 
   return (
     <main className="flex flex-col max-h-screen justify-between">
@@ -64,6 +73,11 @@ export default function Home() {
             stop={() => {}}
           >
             <ChatPicker models={modelsList.models} templates={templates as any}/>
+            <ChatSettings 
+            languageModel={languageModel} 
+            onLanguageModelChange={handleLanguageModelChange}
+            apiKeyConfigurable={true}
+             baseURLConfigurable={true} />
           </ChatInputComponent>
         </div>
         <div>jk</div>

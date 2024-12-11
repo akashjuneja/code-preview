@@ -10,6 +10,8 @@ import { useLocalStorage } from "usehooks-ts";
 import { ChatInputComponent } from "@/components/chat-input";
 import { ChatPicker } from "@/components/chat-picker";
 import modelsList from "@/lib/models.json";
+import templates from "@/lib/templates";
+ 
 
 export default function Home() {
   const [open, setOpen] = useState<boolean>(false);
@@ -61,7 +63,7 @@ export default function Home() {
             isMultiModel={false}
             stop={() => {}}
           >
-            <ChatPicker models={modelsList.models}/>
+            <ChatPicker models={modelsList.models} templates={templates as any}/>
           </ChatInputComponent>
         </div>
         <div>jk</div>

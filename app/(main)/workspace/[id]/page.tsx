@@ -8,7 +8,7 @@ const Workspace = () => {
         <div>
         <ChatView />
         </div >
-        <div className='cols-span-2'>
+        <div className='col-span-2'>
         <CodeView />
         </div>
     </div>

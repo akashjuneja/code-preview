@@ -24,3 +24,16 @@ export const GetMessage=mutation({
         return workspace[0] // Return the first workspace or null
     }
 })
+
+export const UpdateMessageOfWorkspace=mutation({
+    args:{
+        workspace:v.id('workspaces'),
+        messages:v.any()
+    },
+    handler:async (ctx,args)=>{
+        const updatedWorkspace=await ctx.db.patch(args.workspace,{
+            message:args.messages
+        })
+        return updatedWorkspace
+    }
+})

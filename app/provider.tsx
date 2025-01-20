@@ -16,16 +16,15 @@ const Provider = ({
 }>) => {
   const [message, setMessage] = useState<Message[]>([]);
   const [userDetails, setUserDetails] = useState<any>()
-  const setMessages = (newMessages: Message[]) => {
-    setMessage(newMessages); // Spread newMessages into the existing array
-  };
+
+  console.log(message)
   const convex = new ConvexReactClient(process.env.NEXT_PUBLIC_CONVEX_URL!);
 
   return (
     <ConvexProvider client={convex}>
       <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_OAUTH_KEY!}>
         <UserContext.Provider value={{ userDetails, setUserDetails }}>
-          <MessageContext.Provider value={{ message, setMessages }}>
+          <MessageContext.Provider value={{ message, setMessage }}>
             <ThemeProvider
               attribute="class"
               defaultTheme="dark"

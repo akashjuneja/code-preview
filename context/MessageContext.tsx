@@ -7,12 +7,12 @@ export interface Message {
 
 export interface MessageContextType {
     message: Message[];
-    setMessages: (newMessage: Message[]) => void; // Change here
+    setMessage: (newMessage: Message[]) => void; // Change here
 }
 
 const defaultContextValue: MessageContextType = {
     message: [],
-    setMessages: () => {},
+    setMessage: () => {},
 };
 
 export const MessageContext = createContext<MessageContextType>(defaultContextValue);

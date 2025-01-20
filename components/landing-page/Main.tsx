@@ -12,14 +12,14 @@ import { useRouter } from 'next/navigation'
 
 const Main = () => {
     const [userInput, setUserInput] = useState()
-    const { setMessages } = useContext(MessageContext)
+    const { setMessage } = useContext(MessageContext)
     const {userDetails}=useContext(UserContext)
     const [openDialog,setOpenDialog]=useState(false)
     const CreateWorkspace=useMutation(api.workspace.CreateWorkspace)
     const router=useRouter()    
     const onGenerate = async (input: any) => {
         if(userDetails?.name){
-            setMessages([{
+            setMessage([{
                 role:"user",
                 content:input
             }])
@@ -31,7 +31,6 @@ const Main = () => {
                 content:input
             }]
            })
-           console.log(workSpaceId)
            if(workSpaceId){
             router.push(`/workspace/${workSpaceId}`)
            }

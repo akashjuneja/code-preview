@@ -61,7 +61,7 @@ const ChatView = () => {
 
 		try {
 			const PROMPT =
-				JSON.stringify(message[message.length - 1].content) +
+				JSON.stringify(message[message.length - 1].content) + 
 				Prompt.CHAT_PROMPT;
 			const result = await axios.post("/api/ai-chat", {
 				prompt: PROMPT,
